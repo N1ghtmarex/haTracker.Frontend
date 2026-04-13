@@ -1,0 +1,141 @@
+.task-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    user-select: none;
+}
+
+.task-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(102, 126, 234, 0.2);
+    transition: 0.3s;
+    padding: 18px 16px;
+    margin-bottom: 10px;
+}
+
+.task-card .task-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 14px;
+    border: none;
+    background: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.top-border {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    height: 3px;
+    opacity: 1;
+}
+
+.card-content {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.task-card .card-content .card-center .progress .text {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.task-card .progress-bar {
+    height: 6px;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+}
+
+.task-card .progress-line {
+    height: 100%;
+    border-radius: 3px;
+    background: linear-gradient(135deg, rgb(240, 147, 251) 0%, rgb(245, 87, 108) 100%);
+    width: 0%;
+}
+
+.task-card .card-center {
+    flex: 1 1 0%;
+    min-width: 0px;
+}
+
+.task-card .progress-buttons {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+    align-items: center;
+}
+
+.task-card .progress-buttons .decrease {
+    padding: 5px 14px;
+    border-radius: 8px;
+    background: transparent;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.task-card .progress-buttons .increase {
+    padding: 5px 14px;
+    border-radius: 8px;
+    border: none;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.task-card .progress-buttons .input {
+    padding: 5px 12px;
+    border-radius: 8px;
+    background: transparent;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-left: 4px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.task-card .progress-buttons .input-value {
+    width: 90px;
+    padding: 5px 10px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    color: rgb(255, 255, 255);
+    font-size: 13px;
+    font-weight: 600;
+    outline: none;
+}
+
+.task-card .progress-buttons .confirm {
+    padding: 5px 10px;
+    border-radius: 8px;
+    border: none;
+    color: rgb(255, 255, 255);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.task-card .progress-buttons .cancel {
+    padding: 5px 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: transparent;
+    font-size: 13px;
+    cursor: pointer;
+}

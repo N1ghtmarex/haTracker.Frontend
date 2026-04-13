@@ -1,0 +1,55 @@
+.home-page .task-navbar {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 4px;
+    margin: .1rem 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 14px;
+    margin-bottom: 24px;
+}
+
+.home-page .task-navbar-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 0%;
+    padding: 10px 12px;
+    border-radius: 11px;
+    cursor: pointer;
+    user-select: none;
+    gap: 6px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.home-page .active {
+    background: rgba(255, 255, 255, 0.12);
+    color: white;
+}
+
+.home-page .add {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgb(102, 126, 234) 0%, rgb(118, 75, 162) 100%);
+    border: none;
+    color: rgb(255, 255, 255);
+    font-size: 28px;
+    cursor: pointer;
+    box-shadow: rgba(102, 126, 234, 0.4) 0px 6px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    transform: none;
+    transition: all .2s;
+}
+
+.home-page .add:hover {
+    scale: 1.08;
+}

@@ -1,0 +1,213 @@
+.modal-outer {
+    position: fixed;
+    inset: 0px;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    z-index: 200;
+    padding: 0px;
+    opacity: 1;
+}
+
+.add-modal-container {
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    background: linear-gradient(rgb(30, 30, 58) 0%, rgb(22, 22, 46) 100%);
+    border-radius: 24px 24px 0px 0px;
+    padding: 24px 20px 32px;
+    overflow-y: auto;
+    transform: none;
+}
+
+.add-modal-container .modal-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 24px;
+}
+
+.add-modal-container .close-modal {
+    flex: 1;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: transparent;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.add-modal-container .add-modal {
+    flex: 2 1 0%;
+    padding: 14px;
+    border-radius: 12px;
+    border: none;
+    background: linear-gradient(135deg, rgb(102, 126, 234) 0%, rgb(118, 75, 162) 100%);
+    color: rgb(255, 255, 255);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transform: none;
+}
+
+.add-modal-container .add-modal:disabled {
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.add-modal-container .form-group {
+    margin-bottom: 16px;
+}
+
+.add-modal-container .form-group .label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.add-modal-container .form-group .input {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    color: rgb(255, 255, 255);
+    font-size: 15px;
+    outline: none;
+}
+
+.add-modal-container .form-group .icons {
+    margin-top: 10px;
+    padding: 12px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 4px;
+    overflow: hidden;
+    opacity: 1;
+    height: auto;
+}
+
+.add-modal-container .form-group .emoji {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    background: transparent;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-modal-container .form-group .icons .selected {
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.add-modal-container .form-group .icon-input {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.add-modal-container .form-group .icon-input .icon-preview {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-modal-container .form-group .icon-input .select-icon-placeholder {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.add-modal-container .form-group .colors {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.add-modal-container .form-group .color {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: none;
+}
+
+.add-modal-container .form-group .selected {
+    border: 2px solid rgb(255, 255, 255);
+}
+
+.add-modal-container .form-group .tracking-type {
+    display: flex;
+    gap: 8px;
+}
+
+.add-modal-container .form-group .tracking-type button {
+    flex: 1 1 0%;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.03);
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+}
+
+.add-modal-container .form-group .tracking-type .selected {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    color: rgb(255, 255, 255);
+}
+
+.add-modal-container .form-group .units {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    color: rgb(255, 255, 255);
+    font-size: 14px;
+    outline: none;
+    margin-bottom: 10px;
+    appearance: none;
+}
+
+.add-modal-container .form-group .units option {
+    background: rgb(30, 30, 58);
+}
+
+.add-modal-container .form-group .target-value {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    color: rgb(255, 255, 255);
+    font-size: 14px;
+    outline: none;
+}
