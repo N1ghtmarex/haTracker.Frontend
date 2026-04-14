@@ -8,6 +8,7 @@
     background: rgba(255, 255, 255, 0.05);
     border-radius: 14px;
     margin-bottom: 24px;
+    margin-top: 28px;
 }
 
 .home-page .task-navbar-item {
@@ -59,7 +60,8 @@
     align-items: center;
     justify-content: center;
     gap: 12px;
-    margin: 32px 0;
+    margin-top: 28px;
+    margin-bottom: 4px;
 }
 
 .home-page .datepicker .previos, .home-page .datepicker .next {
@@ -89,4 +91,21 @@
     display: flex;
     align-items: center;
     gap: 6px;
+}
+
+.home-page .home-set-today {
+    margin-top: 6px;
+    padding: 4px 12px;
+    border-radius: 8px;
+    border: none;
+    background: rgba(102, 126, 234, 0.2);
+    color: rgb(102, 126, 234);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    opacity: 1;
+    transform: none;
+    display: flex;
+    align-items: center;
+    justify-self: center;
 }

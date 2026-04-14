@@ -33,7 +33,7 @@ export default function HomePage() {
 
     const handlePrevDay = () => setViewDate(format(addDays(new Date(viewDate), -1), "yyyy-MM-dd"));
     const handleNextDay = () => setViewDate(format(addDays(new Date(viewDate), 1), "yyyy-MM-dd"));
-    const isToday = viewDate === format(new Date(), "yyyy-MM-dd");
+    const isToday = viewDate == format(new Date(), "yyyy-MM-dd");
 
     const displayDate = isToday 
         ? "Сегодня" 
@@ -50,6 +50,10 @@ export default function HomePage() {
                 </button>
                 <button className="next" onClick={handleNextDay}>›</button>
             </div>
+            
+            { !isToday && (
+                <button className="home-set-today" onClick={() => setViewDate(format(new Date(), "yyyy-MM-dd"))}>Вернуться к сегодняшнему дню</button>
+            )}
 
             {showCalendar && (
                 <Datepicker 
@@ -70,19 +74,19 @@ export default function HomePage() {
             )}
 
             <div className="task-navbar">
-                <div className={`task-navbar-item task ${selectedNavbarItem === import.meta.env.VITE_TASK_TYPE_ID ? 'active' : ''}`} 
+                <div className={`task-navbar-item task ${selectedNavbarItem == import.meta.env.VITE_TASK_TYPE_ID ? 'active' : ''}`} 
                     onClick={() => setSelectedNavbarItem(import.meta.env.VITE_TASK_TYPE_ID)}>
                     <div className="icon">✅</div>
                     <div className="title">Задачи</div>
                 </div>
 
-                <div className={`task-navbar-item daily ${selectedNavbarItem === import.meta.env.VITE_DAILY_TYPE_ID ? 'active' : ''}`} 
+                <div className={`task-navbar-item daily ${selectedNavbarItem == import.meta.env.VITE_DAILY_TYPE_ID ? 'active' : ''}`} 
                     onClick={() => setSelectedNavbarItem(import.meta.env.VITE_DAILY_TYPE_ID)}>
                     <div className="icon">📅</div>
                     <div className="title">Ежедневные</div>
                 </div>
 
-                <div className={`task-navbar-item habit ${selectedNavbarItem === import.meta.env.VITE_HABIT_TYPE_ID ? 'active' : ''}`} 
+                <div className={`task-navbar-item habit ${selectedNavbarItem == import.meta.env.VITE_HABIT_TYPE_ID ? 'active' : ''}`} 
                     onClick={() => setSelectedNavbarItem(import.meta.env.VITE_HABIT_TYPE_ID)}>
                     <div className="icon">🎯</div>
                     <div className="title">Привычки</div>
@@ -90,7 +94,7 @@ export default function HomePage() {
             </div>
 
             <div className="task-cards">
-                {tasks.length === 0 ? (
+                {tasks.length == 0 ? (
                     <p className="empty-state">Нет задач на этот день</p>
                 ) : (
                     tasks.map((task) => (
