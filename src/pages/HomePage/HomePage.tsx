@@ -98,7 +98,7 @@ export default function HomePage() {
                     <p className="empty-state">Нет задач на этот день</p>
                 ) : (
                     tasks.map((task) => (
-                        <TaskCard key={task.id} task={task} />
+                        <TaskCard key={task.id} task={task} onUpdate={fetchTasks}/>
                     ))
                 )}
             </div>

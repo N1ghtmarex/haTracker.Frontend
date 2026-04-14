@@ -33,3 +33,15 @@ export async function addTask(request: AddTaskModel) {
 
     return response.data;
 }
+
+export async function completeTask(id: string, currentValue: number) {
+    const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/task/completion`, {
+            body: {
+                taskId: id,
+                currentValue: currentValue
+            }
+        }
+    );
+
+    return response.data;
+}

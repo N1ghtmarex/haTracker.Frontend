@@ -50,7 +50,7 @@ export function AddTaskModal({ close, type } : AddTaskModalProps) {
         const request: AddTaskModel = {
             taskTypeId: type,
             title: title,
-            emojiId: emoji?.id ?? import.meta.env.VITE_DEFAULT_EMOJI_ID,
+            emojiId: emoji?.id ?? null,
             colorId: selectedColor?.id ?? import.meta.env.VITE_DEFAULT_COLOR_ID,
             trackingType: trackingType,
             unitId: selectedUnit != "" ? selectedUnit : null,
