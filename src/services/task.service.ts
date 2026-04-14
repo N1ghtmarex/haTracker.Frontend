@@ -2,17 +2,26 @@ import axios from "axios";
 import { buildQueryString } from "./httpHelper.service";
 import type { AddTaskModel } from "../types/addTaskModel";
 
-export async function getTaskList(searchQuery: string | null = null, limit: number | null = null,
-    offset: number | null = null) : Promise<any> {
-        const queryParams = {
-        SearchQuery: searchQuery,
-        Limit: limit,
-        Offset: offset
-    }
+export interface TaskListParams {
+    searchQuery?: string;
+    limit?: number;
+    offset?: number;
+    date?: string;
+    taskTypeId?: string
+}
 
-    const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/task${buildQueryString(queryParams)}`);
-    
+export async function getTaskList(params: TaskListParams = {}): Promise<any> {
+    const queryParams = {
+        SearchQuery: params.searchQuery ?? null,
+        Limit: params.limit ?? null,
+        Offset: params.offset ?? null,
+        Date: params.date ?? null,
+        TaskTypeId: params.taskTypeId ?? null
+    };
 
+    const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/api/task${buildQueryString(queryParams)}`
+    );
     return response.data;
 }
 
