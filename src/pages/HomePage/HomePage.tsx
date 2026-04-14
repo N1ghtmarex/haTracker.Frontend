@@ -96,7 +96,15 @@ export default function HomePage() {
 
             <div className="task-cards">
                 {tasks.length == 0 ? (
-                    <p className="empty-state">Нет задач на этот день</p>
+                    <div className="empty">
+                        <div className="icon">
+                            {`${selectedNavbarItem == import.meta.env.VITE_TASK_TYPE_ID ? '✅' 
+                                : `${selectedNavbarItem == import.meta.env.VITE_DAILY_TYPE_ID ? '📅' : '🎯'}`}`}</div>
+                        <div className="text">
+                            <div className="title">Пока пусто</div>
+                            <div className="description">Нажмите «+» чтобы добавить</div>
+                        </div>
+                    </div>
                 ) : (
                     tasks.map((task) => (
                         <TaskCard key={task.id} task={task} onUpdate={fetchTasks}/>
