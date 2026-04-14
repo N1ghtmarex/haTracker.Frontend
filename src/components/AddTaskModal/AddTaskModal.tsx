@@ -10,10 +10,11 @@ import { addTask } from "../../services/task.service"
 
 export interface AddTaskModalProps {
     close: Function
-    type: string
+    type: string,
+    date: string
 }
 
-export function AddTaskModal({ close, type } : AddTaskModalProps) {
+export function AddTaskModal({ close, type, date } : AddTaskModalProps) {
     const [title, setTitle] = useState<string>("");
 
     const [emojiList, setEmojiList] = useState<Emoji[]>([]);
@@ -47,6 +48,15 @@ export function AddTaskModal({ close, type } : AddTaskModalProps) {
     };
 
     const handleAddTask = async () => {
+        const now = new Date();
+        const currentHours = now.getHours();
+        const currentMinutes = now.getMinutes();
+
+        const [y, m, d] = date.split('-').map(Number);
+        const dateObj = new Date(y, m - 1, d, currentHours, currentMinutes, 0, 0);
+
+        const formattedDate = dateObj.toISOString();
+
         const request: AddTaskModel = {
             taskTypeId: type,
             title: title,
@@ -54,7 +64,8 @@ export function AddTaskModal({ close, type } : AddTaskModalProps) {
             colorId: selectedColor?.id ?? import.meta.env.VITE_DEFAULT_COLOR_ID,
             trackingType: trackingType,
             unitId: selectedUnit != "" ? selectedUnit : null,
-            targetValue: selectedUnit != "" ? selectedTargetValue : 0
+            targetValue: selectedUnit != "" ? selectedTargetValue : 0,
+            date: formattedDate
         };
 
         await addTask(request);

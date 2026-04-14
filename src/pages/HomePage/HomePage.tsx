@@ -68,8 +68,9 @@ export default function HomePage() {
 
             {showAddModal && (
                 <AddTaskModal 
-                    close={() => setShowAddModal(false)} 
-                    type={selectedNavbarItem} 
+                    close={() => { setShowAddModal(false); fetchTasks() }} 
+                    type={selectedNavbarItem}
+                    date={viewDate}
                 />
             )}
 

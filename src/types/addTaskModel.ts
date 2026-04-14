@@ -5,5 +5,6 @@ export interface AddTaskModel {
     colorId: string,
     trackingType: string,
     unitId: string | null,
-    targetValue: number
+    targetValue: number,
+    date: string
 }
