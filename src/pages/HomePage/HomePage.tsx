@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
 import type { Task } from '../../types/task';
-import { getTaskList } from "../../services/task.service";
+import { getTaskList, getTypesList } from "../../services/task.service";
 import TaskCard from "../../components/TaskCard/TaskCard";
 import { AddTaskModal } from "../../components/AddTaskModal/AddTaskModal";
 import Datepicker from "../../components/Datepicker/Datepicker";
 import { format, addDays, parseISO } from "date-fns";
 import { ru } from "date-fns/locale";
+import type { TaskType } from "../../types/taskType";
 
 export default function HomePage() {
     const [selectedNavbarItem, setSelectedNavbarItem] = useState<string>(import.meta.env.VITE_TASK_TYPE_ID);
     const [showAddModal, setShowAddModal] = useState(false);
     const [tasks, setTasks] = useState<Task[]>([]);
+    const [types, setTypes] = useState<TaskType[]>([]);
     const [showCalendar, setShowCalendar] = useState(false);
     
     const [viewDate, setViewDate] = useState<string>(format(new Date(), "yyyy-MM-dd"));
@@ -27,8 +29,16 @@ export default function HomePage() {
         setTasks(response.value.items ?? []);
     };
 
+    const fetchTypes = async () => {
+
+        const response = await getTypesList();
+
+        setTypes(response.value.items ?? []);
+    };
+
     useEffect(() => {
         fetchTasks();
+        fetchTypes();
     }, [viewDate, selectedNavbarItem]);
 
     const handlePrevDay = () => setViewDate(format(addDays(new Date(viewDate), -1), "yyyy-MM-dd"));
@@ -73,25 +83,18 @@ export default function HomePage() {
                     date={viewDate}
                 />
             )}
-
+            
             <div className="task-navbar">
-                <div className={`task-navbar-item task ${selectedNavbarItem == import.meta.env.VITE_TASK_TYPE_ID ? 'active' : ''}`} 
-                    onClick={() => setSelectedNavbarItem(import.meta.env.VITE_TASK_TYPE_ID)}>
-                    <div className="icon">✅</div>
-                    <div className="title">Задачи</div>
-                </div>
-
-                <div className={`task-navbar-item daily ${selectedNavbarItem == import.meta.env.VITE_DAILY_TYPE_ID ? 'active' : ''}`} 
-                    onClick={() => setSelectedNavbarItem(import.meta.env.VITE_DAILY_TYPE_ID)}>
-                    <div className="icon">📅</div>
-                    <div className="title">Ежедневные</div>
-                </div>
-
-                <div className={`task-navbar-item habit ${selectedNavbarItem == import.meta.env.VITE_HABIT_TYPE_ID ? 'active' : ''}`} 
-                    onClick={() => setSelectedNavbarItem(import.meta.env.VITE_HABIT_TYPE_ID)}>
-                    <div className="icon">🎯</div>
-                    <div className="title">Привычки</div>
-                </div>
+                { types.map(item => (
+                    <>
+                        <div className={`task-navbar-item ${selectedNavbarItem == item.id ? 'active' : ''}`} 
+                            onClick={() => setSelectedNavbarItem(item.id)}>
+                            <div className="icon">{ item.icon }</div>
+                            <div className="title">{ item.name }</div>
+                        </div>
+                    </>
+                ))
+                }
             </div>
 
             <div className="task-cards">

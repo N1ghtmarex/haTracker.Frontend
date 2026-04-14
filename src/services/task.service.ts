@@ -8,7 +8,13 @@ export interface TaskListParams {
     offset?: number;
     date?: string;
     taskTypeId?: string
-}
+};
+
+export interface RequestParams {
+    searchQuery?: string;
+    limit?: number;
+    offset?: number;
+};
 
 export async function getTaskList(params: TaskListParams = {}): Promise<any> {
     const queryParams = {
@@ -41,6 +47,20 @@ export async function completeTask(id: string, currentValue: number) {
                 currentValue: currentValue
             }
         }
+    );
+
+    return response.data;
+}
+
+export async function getTypesList(request: RequestParams | null = null) {
+    const queryParams = {
+        SearchQuery: request?.searchQuery ?? null,
+        Limit: request?.limit ?? null,
+        Offset: request?.offset ?? null
+    };
+
+    const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/api/task/type${buildQueryString(queryParams)}`
     );
 
     return response.data;
