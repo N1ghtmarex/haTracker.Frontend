@@ -66,3 +66,17 @@ export async function getTypesList(request: RequestParams | null = null) {
 
     return response.data;
 }
+
+export async function getTasksCompletions(request : RequestParams | null = null) {
+    const queryParams = {
+        SearchQuery: request?.searchQuery ?? null,
+        Limit: request?.limit ?? null,
+        Offset: request?.offset ?? null
+    };
+
+    const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/api/task/completion${buildQueryString(queryParams)}`
+    );
+
+    return response.data;
+}

@@ -3,6 +3,7 @@
 @import "./components/TaskCard/TaskCard.scss";
 @import "./components/AddTaskModal/AddTaskModal.module.scss";
 @import "./components/Datepicker/Datepicker.module.scss";
+@import "./components/Stats/Stats.module.scss";
 
 @import "./App.css";
 

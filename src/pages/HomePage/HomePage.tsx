@@ -7,6 +7,7 @@ import Datepicker from "../../components/Datepicker/Datepicker";
 import { format, addDays, parseISO } from "date-fns";
 import { ru } from "date-fns/locale";
 import type { TaskType } from "../../types/taskType";
+import Stats from "../../components/Stats/Stats";
 
 export default function HomePage() {
     const [selectedNavbarItem, setSelectedNavbarItem] = useState<string>(import.meta.env.VITE_TASK_TYPE_ID);
@@ -124,6 +125,11 @@ export default function HomePage() {
                     ))
                 )}
             </div>
+
+            { selectedNavbarItem == 'stats' && (
+                <Stats></Stats>
+            )
+            }
         </div>
     );
 }
