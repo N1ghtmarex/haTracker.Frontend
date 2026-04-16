@@ -1,32 +1,33 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Task } from "../../types/task";
 import { completeTask } from "../../services/task.service";
 
 export interface TaskCardProps {
     task: Task;
     onUpdate: () => void;
+    date: string;
 }
 
-export default function TaskCard({ task, onUpdate }: TaskCardProps) {
+export default function TaskCard({ task, onUpdate, date }: TaskCardProps) {
     const [showInput, setShowInput] = useState(false);
     const [inputValue, setInputValue] = useState(task.currentValue ?? 0);
 
     const handleIncrease = async () => {
         const newValue = inputValue + 1;
         setInputValue(newValue);
-        await completeTask(task.id, newValue);
+        await completeTask(task.id, newValue, new Date(date + "T13:00:00").toISOString());
         onUpdate();
     }
     const handleDecrease = async () => {
         const newValue = Math.max(0, inputValue - 1);
         setInputValue(newValue);
-        await completeTask(task.id, newValue);
+        await completeTask(task.id, newValue, new Date(date + "T13:00:00").toISOString());
         onUpdate();
     }
 
     const handleConfirm = async () => {
         try {
-            await completeTask(task.id, inputValue);
+            await completeTask(task.id, inputValue, new Date(date + "T13:00:00").toISOString());
             setShowInput(false);
             onUpdate();
         } catch (error) {
@@ -43,7 +44,7 @@ export default function TaskCard({ task, onUpdate }: TaskCardProps) {
         const newValue = task.targetValue == inputValue ? 0 : task.targetValue;
         setInputValue(newValue);
 
-        await completeTask(task.id, newValue);
+        await completeTask(task.id, newValue, new Date(date + "T13:00:00").toISOString());
         onUpdate();
     };
 
@@ -54,6 +55,10 @@ export default function TaskCard({ task, onUpdate }: TaskCardProps) {
     const progressPercent = task.targetValue > 0 
         ? Math.min(100, (task.currentValue / task.targetValue) * 100) 
         : 0;
+
+    useEffect(() => {
+        setInputValue(task.currentValue ?? 0);
+    }, [task.currentValue]); 
 
     return (
         <div className={`task-card ${task.isCompleted ? 'completed' : ''}`}>

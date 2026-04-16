@@ -37,8 +37,13 @@ export default function HomePage() {
     };
 
     useEffect(() => {
-        fetchTasks();
-        fetchTypes();
+        if (selectedNavbarItem != "stats") {
+            fetchTasks();
+            fetchTypes();
+        }
+        else {
+            setTasks([]);
+        }
     }, [viewDate, selectedNavbarItem]);
 
     const handlePrevDay = () => setViewDate(format(addDays(new Date(viewDate), -1), "yyyy-MM-dd"));
@@ -83,7 +88,7 @@ export default function HomePage() {
                     date={viewDate}
                 />
             )}
-            
+
             <div className="task-navbar">
                 { types.map(item => (
                     <>
@@ -95,10 +100,15 @@ export default function HomePage() {
                     </>
                 ))
                 }
+                <div className={`task-navbar-item ${selectedNavbarItem == "stats" ? 'active' : ''}`} 
+                    onClick={() => setSelectedNavbarItem("stats")}>
+                    <div className="icon">📊</div>
+                    <div className="title">Статистика</div>
+                </div>
             </div>
 
             <div className="task-cards">
-                {tasks.length == 0 ? (
+                {tasks.length == 0 && selectedNavbarItem != 'stats' ? (
                     <div className="empty">
                         <div className="icon">
                             {`${selectedNavbarItem == import.meta.env.VITE_TASK_TYPE_ID ? '✅' 
@@ -110,7 +120,7 @@ export default function HomePage() {
                     </div>
                 ) : (
                     tasks.map((task) => (
-                        <TaskCard key={task.id} task={task} onUpdate={fetchTasks}/>
+                        <TaskCard key={`${viewDate}-${task.id}`} task={task} date={viewDate} onUpdate={fetchTasks}/>
                     ))
                 )}
             </div>
